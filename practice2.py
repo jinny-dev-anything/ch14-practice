@@ -1,5 +1,16 @@
 #실행: python practice2.py
 
+## 솔루션 결과
+"""
+!!STARTED!!
+
+--- Iframe 문제 ---
+ifram 문제2(내부 input placeholder): Type inside iframe
+ifram 문제3(원래창 헤더 text): 🌐 HTML Example Page (Selenium 실습 통합)
+
+!!FINISHED!!
+"""
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -18,18 +29,17 @@ def iframe_problems(driver, wait):
     details_elem = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "section details")))
     details_elem.click()
 
-    # 문제1. 대상 iframe 으로 이동(switch_to)
+    # 1. 대상 iframe 으로 이동
     iframe = wait.until(EC.presence_of_element_located((By.ID, "test-iframe")))
-    driver.xxxx
+    driver.switch_to.frame(iframe)
 
-    # 문제2. iframe 내부 input(id="iframe-input") 확인
-    locator_input = (By.ID, "")
-    iframe_input = wait.until(EC.presence_of_element_located(locator_input))
+    # 2. iframe 내부 input(id="iframe-input") 확인
+    iframe_input = wait.until(EC.presence_of_element_located((By.ID, "iframe-input")))
     print("ifram 문제2(내부 input placeholder):", iframe_input.get_attribute("placeholder"))
 
     
-    # 문제3. 원래 창(default content)으로 복귀 후, h1 확인
-    driver.xxx
+    # 3. 원래 창(default content)으로 복귀 후, h1 확인
+    driver.switch_to.default_content()
     header = wait.until(EC.presence_of_element_located((By.TAG_NAME, "h1")))
     print("ifram 문제3(원래창 헤더 text):", header.text)
 
