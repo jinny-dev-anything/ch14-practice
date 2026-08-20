@@ -14,11 +14,9 @@ def mouse_actions_problems(driver, wait):
     actions = ActionChains(driver)
 
     # 1. section(class="long-text")로 이동(스크롤) >> 버튼(id="btn-form-submit")로 이동(스크롤) >> 해당 버튼 클릭
-    locator_css = (By.CSS_SELECTOR, "")
-    locator_btn = (By.ID, "")
-    scroll_elem = wait.until(EC.presence_of_element_located(locator_css))
-    submit_button = wait.until(EC.presence_of_element_located(locator_btn))
-    actions.xxxx
+    scroll_elem = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "section.long-text")))
+    submit_button = wait.until(EC.presence_of_element_located((By.ID, "btn-form-submit")))
+    actions.move_to_element(scroll_elem).move_to_element(submit_button).click().perform()
     
     # 정상적으로 버튼이 클릭 되었을 경우, alert 처리
     try:
@@ -31,12 +29,9 @@ def mouse_actions_problems(driver, wait):
         print("actions 문제 1(스크롤) 실패")
 
     # 2. div(id="hover-menu")에 마우스 오버(Hover) >> 버튼(id="hover-submenu-button") 클릭가능한지 확인 후 클릭
-    locator_hover = (By.ID, "")
-    hover_elem = wait.until(EC.presence_of_element_located(locator_hover))
-    actions.xxxx
-    
-    locator_button_menu = (By.ID, "")
-    submenu_button = wait.until(EC.element_to_be_clickable(locator_button_menu))
+    hover_elem = wait.until(EC.presence_of_element_located((By.ID, "hover-menu")))
+    actions.move_to_element(hover_elem).perform()
+    submenu_button = wait.until(EC.element_to_be_clickable((By.ID, "hover-submenu-button")))
     submenu_button.click()
     print("actions 문제 2(마우스 오버>버튼클릭) 완료")
 
