@@ -1,3 +1,5 @@
+## 실행방법: python practice1.py
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -11,17 +13,17 @@ options.add_argument("--disable-features=PasswordLeakDetection,AutofillServerCom
 
 def xpath_axes_problems(driver, wait):
     print("\n--- XPath Axes 문제 ---")
-    # 1. id='xpath-head' 인 h3 >> 다음에 오는 형제들 중, 첫번재 형제(ul) >> 의 자식 중, 두번재 자식(li) 선택
+    # 문제1. id='xpath-head' 인 h3 >> 다음에 오는 형제들 중, 첫번재 형제(ul) >> 의 자식 중, 두번재 자식(li) 선택
     locator_xpath_1 = (By.XPATH, "")
     second_li = wait.until(EC.presence_of_element_located(locator_xpath_1))
     print("xpath 문제 1 완료(html):", second_li.get_attribute("outerHTML"))
 
-    # 2. text()='Item B'인  li >> 바로 이전 형제 li
+    # 문제2. text()='Item B'인  li >> 바로 이전 형제 li
     locator_xpath_2 = (By.XPATH, "")
     prev_li = wait.until(EC.presence_of_element_located(locator_xpath_2))
     print("xpath 문제 2 완료(text):", prev_li.text)
 
-    # 3. text()='Item B'인  li >> 바로 이후 형제 li
+    # 문제3. text()='Item B'인  li >> 바로 이후 형제 li
     locator_xpath_3 = (By.XPATH, "")
     next_li = wait.until(EC.presence_of_element_located(locator_xpath_3))
     print("xpath 문제 3 완료(text):", next_li.text)
